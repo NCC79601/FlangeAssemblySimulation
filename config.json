@@ -1,0 +1,8 @@
+{
+    "comm_port":    65520,
+    "comm_timeout": 30,
+
+    "bolt_diameter": 0.006,
+
+    "top_plane_z": 0.075051
+}

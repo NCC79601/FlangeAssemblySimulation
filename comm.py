@@ -1,13 +1,15 @@
+# 通信模块，用于与 ANSYS 程序进行通信
+
 import socket
 import json
 
 client_socket = None
 
 def init():
-    with open('./comm_config.json', 'r') as config:
+    with open('./config.json', 'r') as config:
         config  = json.load(config)
-        port    = config['port']
-        timeout = config['timeout']
+        port    = config['comm_port']
+        timeout = config['comm_timeout']
 
     global client_socket
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -57,7 +59,7 @@ if __name__ == '__main__':
     init()
 
     # testing cmd1
-    ansys_solve(pretensions=[2100, 2200, 2300, 2400, 2500, 2600])
+    ansys_solve(pretensions=[2100, 1200, 1300, 2400, 4500, 5000])
     
     # testing cmd2
     ansys_exit()

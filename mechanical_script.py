@@ -43,6 +43,8 @@ while True:
         break
 
     elif recv_data['cmd'] == 'solve':
+        simulation_count += 1
+        
         # get pretensions from data packet
         pretensions = recv_data['pretensions']
         pretensions_str = ['{}[N]'.format(pretension) for pretension in pretensions]
@@ -75,7 +77,6 @@ while True:
                 filename = os.path.join(result_dir, result.Name + ".csv")
                 result.ExportToTextFile(filename)
         
-        simulation_count += 1
         simulation_result_str = "simulation " + str(simulation_count) + " completed."
         print(simulation_result_str)
 
