@@ -1,5 +1,5 @@
 {
-    "comm_port":    65520,
+    "comm_port":    65500,
     "comm_timeout": 30,
 
     "bolt_diameter": 0.006,

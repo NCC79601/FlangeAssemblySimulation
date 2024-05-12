@@ -3,7 +3,7 @@ import wbjn
 import socket
 import json
 
-port = 65520
+port = 65500
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind(('127.0.0.1', port))
 server_socket.listen(5)
@@ -44,7 +44,7 @@ while True:
 
     elif recv_data['cmd'] == 'solve':
         simulation_count += 1
-        
+
         # get pretensions from data packet
         pretensions = recv_data['pretensions']
         pretensions_str = ['{}[N]'.format(pretension) for pretension in pretensions]

@@ -4,6 +4,7 @@ import socket
 import json
 
 client_socket = None
+ansys_running = False
 
 def init():
     with open('./config.json', 'r') as config:
@@ -16,6 +17,7 @@ def init():
     client_socket.connect(('127.0.0.1', port))
     client_socket.settimeout(timeout)
     print(f'已连接至 ANSYS 程序')
+    ansys_running = True
 
     try:
         welcome_message = client_socket.recv(1024).decode()
@@ -25,11 +27,15 @@ def init():
         exit(1)
 
 def close():
+    if ansys_running:
+        ansys_exit()
     global client_socket
     client_socket.close()
 
-
-def ansys_solve(pretensions) -> str:
+def ansys_solve(pretensions: list) -> str:
+    '''
+    return: result_dir
+    '''
     global client_socket
     cmd = {
         'cmd': 'solve',

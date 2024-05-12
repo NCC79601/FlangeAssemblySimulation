@@ -11,9 +11,9 @@ with open('./config.json', 'r') as config:
     config  = json.load(config)
     top_plane_z = config['top_plane_z']
 
-def extract_csv(file_path) -> object:
+def extract_csv(data_dir) -> object:
     csv_data = {}
-    with open(file_path, 'r') as file:
+    with open(data_dir, 'r') as file:
         reader = csv.reader(file, delimiter='\t')
         for i, row in enumerate(reader):
             for j, element in enumerate(row):
@@ -57,18 +57,21 @@ def get_section_data(section_id, data_dir):
 
 
 def get_concentricity(data_dir, enable_drawing=False, deform_scale=1, deflect_arrow_scale=1000):
+    '''
+    return: concentricity, deflect_vector
+    '''
     # 截面 1:
-    X1, Y1, Z1, U1, V1 = get_section_data(1, file_path)
+    X1, Y1, Z1, U1, V1 = get_section_data(1, data_dir)
     cx1, cy1, r1 = circle_fit(X=X1+deform_scale*U1, Y=Y1+deform_scale*V1)
     cz1 = Z1[0]
 
     # 截面 2:
-    X2, Y2, Z2, U2, V2 = get_section_data(2, file_path)
+    X2, Y2, Z2, U2, V2 = get_section_data(2, data_dir)
     cx2, cy2, r2 = circle_fit(X=X2+deform_scale*U2, Y=Y2+deform_scale*V2)
     cz2 = Z2[0]
 
     # 截面 3 (最靠下):
-    X3, Y3, Z3, U3, V3 = get_section_data(3, file_path)
+    X3, Y3, Z3, U3, V3 = get_section_data(3, data_dir)
     cx3, cy3, r3 = circle_fit(X=X3+deform_scale*U3, Y=Y3+ deform_scale*V3)
     cz3 = Z3[0]
 
@@ -82,7 +85,6 @@ def get_concentricity(data_dir, enable_drawing=False, deform_scale=1, deflect_ar
     x_values = np.polyval(x_fit, z_values)
     y_values = np.polyval(y_fit, z_values)
     
-
     x0, y0, z0 = x_values[0], y_values[0], z_values[0]
     x1, y1, z1 = x_values[1], y_values[1], z_values[1]
     
@@ -90,7 +92,7 @@ def get_concentricity(data_dir, enable_drawing=False, deform_scale=1, deflect_ar
     concentricity  = np.sqrt((x1 - x0)**2 + (y1 - y0)**2) * 2
     deflect_vector = np.array([x1 - x0, y1 - y0])
 
-    print(f'concentricity: {concentricity * 1e3}')
+    print(f'concentricity:  {concentricity * 1e3}')
     print(f'deflect_vector: {deflect_vector}')
 
     if enable_drawing:
@@ -143,11 +145,13 @@ def get_concentricity(data_dir, enable_drawing=False, deform_scale=1, deflect_ar
         ax.set_zlabel('Z')
 
         plt.show()
+    
+    return concentricity, deflect_vector
 
 
 if __name__ == '__main__':
     deform_scale = 1
 
-    file_path = 'D:/学习/课程/设计与制造2/大作业/仿真/法兰仿真/falanA-A_files/user_files/1'
+    data_dir = 'D:/学习/课程/设计与制造2/大作业/仿真/法兰仿真/falanA-A_files/user_files/1'
     
-    get_concentricity(file_path, enable_drawing=True, deform_scale=deform_scale)
+    get_concentricity(data_dir, enable_drawing=True, deform_scale=deform_scale)
