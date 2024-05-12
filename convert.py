@@ -13,4 +13,4 @@ def torque_to_pretension(torque):
 
 if __name__ == '__main__':
     print(f'2100N pretension = {pretension_to_torque(2100)} Nm')
-    print(f'5Nm torque = {torque_to_pretension(5)} N')
+    print(f'2Nm torque = {torque_to_pretension(2)} N')

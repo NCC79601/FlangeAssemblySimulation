@@ -1,0 +1,16 @@
+{
+    "canvas_width": 900,
+    "canvas_height": 700,
+
+    "radius": 80,
+    "label_radius": 60,
+    "input_box_radius": 120,
+    "screw_radius": 80,
+    "screw_hexagon_side_length": 20,
+
+    "input_box_width": 40,
+    "input_box_height": 20,
+    
+    "button_width": 80,
+    "button_height": 30
+}

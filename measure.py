@@ -35,6 +35,7 @@ def get_concentricity(data, phase_offset=0):
         },
         ...
     ]
+    return: concentricity, deflect_vector
     ```
     '''
     center_list = []
@@ -85,15 +86,15 @@ if __name__ == '__main__':
     data = [
         {
             'dis_to_up_up': 40e-3,
-            'readings': [382e-6, 384e-6, 384e-6, 384e-6, 383e-6, 382e-6]
+            'readings': [411e-6, 412e-6, 412e-6, 412e-6, 412e-6, 411e-6]
         },
         {
             'dis_to_up_up': 50e-3,
-            'readings': [381e-6, 381e-6, 381e-6, 381e-6, 381e-6, 381e-6]
+            'readings': [407e-6, 410e-6, 410e-6, 410e-6, 408e-6, 407e-6]
         },
         {
             'dis_to_up_up': 60e-3,
-            'readings': [378e-6, 379e-6, 379e-6, 379e-6, 379e-6, 378e-6]
+            'readings': [399e-6, 404e-6, 404e-6, 404e-6, 401e-6, 399e-6]
         }
     ]
 

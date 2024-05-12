@@ -4,5 +4,7 @@
 
     "bolt_diameter": 0.006,
 
-    "top_plane_z": 0.25609
+    "top_plane_z": 0.25609,
+
+    "used_result_foldername": "2024-05-12_11-08-54"
 }
