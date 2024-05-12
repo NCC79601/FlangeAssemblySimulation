@@ -37,7 +37,7 @@ def get_section_data(section_id, data_dir):
     X = np.array(data_x['X坐标 (m)'], dtype=float)
     Y = np.array(data_x['Y坐标 (m)'], dtype=float)
     Z = np.array(data_x['Z坐标 (m)'], dtype=float)
-    Z = top_plane_z + 0.09 - Z
+    Z = Z + 90e-3 - top_plane_z
     U = np.array(data_x['定向变形 (m)'], dtype=float)
     V = np.array(data_y['定向变形 (m)'], dtype=float)
 

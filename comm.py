@@ -51,6 +51,25 @@ def ansys_solve(pretensions: list) -> str:
     return ret_data['result_dir']
 
 
+def ansys_test(pretensions: list) -> str:
+    '''
+    return: result_dir
+    '''
+    global client_socket
+    cmd = {
+        'cmd': 'test',
+        'pretensions': pretensions
+    }
+    client_socket.send(json.dumps(cmd).encode())
+    print('已发送求解命令')
+    # 等待求解完成
+    ret_data_str = client_socket.recv(1024).decode()
+    ret_data = json.loads(ret_data_str)
+    if ret_data['status'] == 'success':
+        print('求解成功')
+    return ret_data['result_dir']
+
+
 def ansys_exit() -> None:
     global client_socket
     cmd = { 'cmd': 'exit' }

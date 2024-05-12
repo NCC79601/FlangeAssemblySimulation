@@ -42,7 +42,7 @@ while True:
         server_socket.close()
         break
 
-    elif recv_data['cmd'] == 'solve':
+    elif recv_data['cmd'] == 'solve' or recv_data['cmd'] == 'test':
         simulation_count += 1
 
         # get pretensions from data packet
@@ -71,7 +71,10 @@ while True:
             DirectionDeformationResults = [child for child in analysis.Solution.Children if child.DataModelObjectCategory == DataModelObjectCategory.DirectionalDeformation]
             for result in DirectionDeformationResults:
                 result.Activate()
-                result_dir = user_dir + "/" + str(simulation_count)
+                if recv_data['cmd'] == 'test':
+                    result_dir = user_dir + "/test"
+                else:
+                    result_dir = user_dir + "/" + str(simulation_count)
                 if not os.path.exists(result_dir):
                     os.makedirs(result_dir)
                 filename = os.path.join(result_dir, result.Name + ".csv")

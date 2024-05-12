@@ -3,14 +3,14 @@ import matplotlib.pyplot as plt
 
 fig, axes = plt.subplots(2)
 
-data = pd.read_csv('./results/2024-05-12_07-30-00/results.csv')
+data = pd.read_csv('../results/2024-05-12_07-30-00/results.csv')
 deflect_x = data['deflect_x']
 deflect_y = data['deflect_y']
 
 axes[0].plot(deflect_x, label='Tmax=4, Tmin=3')
 axes[1].plot(deflect_y, label='Tmax=4, Tmin=3')
 
-data = pd.read_csv('./results/2024-05-12_07-46-10/results.csv')
+data = pd.read_csv('../results/2024-05-12_07-46-10/results.csv')
 deflect_x = data['deflect_x']
 deflect_y = data['deflect_y']
 
