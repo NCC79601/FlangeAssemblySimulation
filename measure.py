@@ -1,5 +1,5 @@
 import numpy as np
-from fit import circle_fit
+from utils.fit import circle_fit
 import matplotlib.pyplot as plt
 
 def get_center(readings, phase_offset=0):

@@ -5,7 +5,7 @@ import json
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.spatial import ConvexHull
-from fit import circle_fit
+from utils.fit import circle_fit
 
 with open('./config.json', 'r') as config:
     config  = json.load(config)
